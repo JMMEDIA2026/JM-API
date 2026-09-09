@@ -9,11 +9,11 @@ const Navbar = () => {
     const pathname = usePathname();
 
     const navLinks = [
-        { name: 'Home', href: '/', icon: 'fa-home' },
-        { name: 'Docs', href: '/docs', icon: 'fa-book-open' },
-        { name: 'Chat', href: '/chat', icon: 'fa-comments' },
-        { name: 'Blog', href: '/blog', icon: 'fa-newspaper' },
-        { name: 'Scripts', href: '/userscripts', icon: 'fa-cubes' },
+        { name: '홈', href: '/', icon: 'fa-home' },
+        { name: '문서', href: '/docs', icon: 'fa-book-open' },
+        { name: '채팅', href: '/chat', icon: 'fa-comments' },
+        { name: '블로그', href: '/blog', icon: 'fa-newspaper' },
+        { name: '스크립트', href: '/userscripts', icon: 'fa-cubes' },
     ];
 
     return (
@@ -39,7 +39,7 @@ const Navbar = () => {
             <div className={`fixed inset-y-0 right-0 z-[60] w-72 bg-card border-l border-default transition-transform duration-500 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} md:block`}>
                 <div className="p-6 flex flex-col h-full">
                     <div className="flex items-center justify-between mb-10">
-                        <span className="font-black text-white text-xl">Menu</span>
+                        <span className="font-black text-white text-xl">메뉴</span>
                         <button 
                             onClick={() => setIsOpen(false)}
                             className="w-8 h-8 rounded-lg bg-default text-white flex items-center justify-center"

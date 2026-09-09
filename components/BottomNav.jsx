@@ -9,11 +9,11 @@ const BottomNav = () => {
     const pathname = usePathname();
 
     const navLinks = [
-        { name: 'Home', href: '/', icon: 'fa-home' },
-        { name: 'Docs', href: '/docs', icon: 'fa-book-open' },
-        { name: 'Chat', href: '/chat', icon: 'fa-comments' },
-        { name: 'Blog', href: '/blog', icon: 'fa-newspaper' },
-        { name: 'Scripts', href: '/userscripts', icon: 'fa-cubes' },
+        { name: '홈', href: '/', icon: 'fa-home' },
+        { name: '문서', href: '/docs', icon: 'fa-book-open' },
+        { name: '채팅', href: '/chat', icon: 'fa-comments' },
+        { name: '블로그', href: '/blog', icon: 'fa-newspaper' },
+        { name: '스크립트', href: '/userscripts', icon: 'fa-cubes' },
     ];
 
     // Sembunyikan navigasi bawah pada halaman chat agar tampilan lebih luas/mirip aplikasi native

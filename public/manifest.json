@@ -1,7 +1,7 @@
 {
   "name": "PuruBoy API",
   "short_name": "PuruBoy API",
-  "description": "Platform REST API gratis untuk developer Indonesia dengan fitur AI, Downloader, Anime, dan Tools.",
+  "description": "AI, 다운로더, 애니메이션 및 개발 도구를 제공하는 개발자용 무료 REST API 플랫폼입니다.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#09090b",
@@ -19,6 +19,6 @@
     }
   ],
   "categories": ["developer tools", "web services", "api"],
-  "lang": "id",
+  "lang": "ko",
   "orientation": "any"
 }

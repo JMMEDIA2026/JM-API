@@ -70,9 +70,9 @@ export default function FeaturedPopup() {
                     <i className="fas fa-bolt text-white text-2xl animate-pulse"></i>
                 </div>
                 
-                <h2 className="text-xl font-bold text-white mb-2">{featured.title || 'Fitur Baru!'}</h2>
+                <h2 className="text-xl font-bold text-white mb-2">{featured.title || '새 기능!'}</h2>
                 <p className="text-sm text-gray-400 mb-6 leading-relaxed">
-                    {featured.description || 'Ada pembaruan atau fitur baru yang bisa kamu coba sekarang.'}
+                    {featured.description || '지금 새 업데이트 또는 기능을 사용해 볼 수 있습니다.'}
                 </p>
                 
                 <div className="flex gap-3">
@@ -80,13 +80,13 @@ export default function FeaturedPopup() {
                         onClick={handleDismiss}
                         className="flex-1 py-3 text-sm font-bold text-gray-400 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors"
                     >
-                        Nanti Saja
+                        나중에
                     </button>
                     <button 
                         onClick={handleGo}
                         className="flex-1 py-3 text-sm font-bold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-lg shadow-accent/20 transition-transform active:scale-95"
                     >
-                        Gas Cobain!
+                        사용해 보기!
                     </button>
                 </div>
             </div>

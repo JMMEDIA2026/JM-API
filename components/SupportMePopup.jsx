@@ -38,7 +38,7 @@ export default function SupportMePopup() {
         <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in p-4">
             <div className="native-card max-w-sm w-full p-6 animate-slide-up relative border-pink-500/30 shadow-[0_0_30px_rgba(236,72,153,0.15)]">
                 {/* Tombol Close */}
-                <button 
+                <button
                     onClick={handleDismiss}
                     className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:text-white transition-colors"
                 >
@@ -48,9 +48,9 @@ export default function SupportMePopup() {
                 {/* Logo Favicon */}
                 <div className="flex justify-center mb-4">
                     <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-lg border-2 border-pink-500/20 ring-2 ring-pink-500/10">
-                        <Image 
-                            src="/favicon.jpg" 
-                            alt="PuruBoy API" 
+                        <Image
+                            src="/favicon.jpg"
+                            alt="PuruBoy API"
                             width={64}
                             height={64}
                             className="w-full h-full object-cover"
@@ -61,34 +61,34 @@ export default function SupportMePopup() {
                 {/* Icon Support */}
                 <div className="flex justify-center -mt-2 mb-3">
                     <div className="bg-pink-500/10 text-pink-400 text-[10px] font-bold px-3 py-1 rounded-full border border-pink-500/20 uppercase tracking-wider flex items-center gap-1">
-                        <i className="fas fa-heart text-xs"></i> Dukungan
+                        <i className="fas fa-heart text-xs"></i> 후원
                     </div>
                 </div>
 
                 {/* Pesan */}
                 <h2 className="text-lg font-bold text-white text-center mb-3">
-                    Support Me!
+                    후원하기
                 </h2>
                 <p className="text-sm text-gray-400 text-center leading-relaxed mb-6">
-                    Website ini gratis selamanya. Jika merasa terbantu, 
-                    <span className="text-pink-400 font-semibold"> dukung developer</span> agar semangat terus berkarya ya!
+                    이 웹사이트는 언제나 무료입니다. 도움이 되었다면
+                    <span className="text-pink-400 font-semibold"> 개발자를 후원해 주세요</span> 더 나은 서비스를 만드는 데 큰 힘이 됩니다.
                 </p>
 
                 {/* Tombol Support */}
                 <div className="flex flex-col gap-3">
-                    <Link 
+                    <Link
                         href="/support"
                         onClick={handleDismiss}
                         className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3 rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-pink-900/20"
                     >
                         <i className="fas fa-hand-holding-heart text-lg"></i>
-                        <span>Dukung Sekarang</span>
+                        <span>지금 후원하기</span>
                     </Link>
-                    <button 
+                    <button
                         onClick={handleDismiss}
                         className="w-full py-2.5 text-sm font-bold text-gray-400 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors"
                     >
-                        Nanti Saja
+                        나중에
                     </button>
                 </div>
             </div>

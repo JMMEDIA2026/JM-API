@@ -20,11 +20,11 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL('https://puruboy-api.vercel.app'),
   title: {
-    default: 'PuruBoy API - Platform REST API Gratis untuk Developer Indonesia',
+    default: 'PuruBoy API - 개발자를 위한 무료 REST API 플랫폼',
     template: '%s | PuruBoy API'
   },
-  description: 'PuruBoy API adalah platform REST API gratis untuk developer Indonesia. Nikmati layanan AI Chat (DeepSeek, GPT, Gemini), Downloader (TikTok, YouTube, IG), Anime Streaming, dan Tools lengkap. Cepat, stabil, dan mudah diintegrasikan.',
-  keywords: ['PuruBoy API', 'REST API Gratis', 'API Indonesia', 'API AI Gratis', 'TikTok Downloader API', 'YouTube API Gratis', 'Anime Streaming API', 'Developer Tools', 'PuruBoy', 'API Publik Indonesia', 'Web Service API', 'Free REST API Indonesia'],
+  description: 'PuruBoy API는 AI 채팅, 다운로더, 애니메이션 스트리밍 및 개발 도구를 제공하는 무료 REST API 플랫폼입니다. 빠르고 안정적이며 쉽게 연동할 수 있습니다.',
+  keywords: ['PuruBoy API', '무료 REST API', '한국어 API', '무료 AI API', 'TikTok 다운로더 API', 'YouTube API', '애니메이션 스트리밍 API', '개발 도구', 'PuruBoy', '공개 API', '웹 서비스 API'],
   authors: [{ name: 'PuruBoy', url: 'https://github.com/purujawa06-bot' }],
   creator: 'PuruBoy',
   publisher: 'PuruBoy',
@@ -32,25 +32,25 @@ export const metadata = {
     canonical: 'https://puruboy-api.vercel.app',
   },
   openGraph: {
-    title: 'PuruBoy API - Platform REST API Gratis & Modular',
-    description: 'Akses ratusan endpoint API gratis untuk AI, Downloader, Anime, dan Tools. Dokumentasi lengkap, respons cepat, dan gratis untuk semua developer Indonesia.',
+    title: 'PuruBoy API - 무료 모듈형 REST API 플랫폼',
+    description: 'AI, 다운로더, 애니메이션 및 개발 도구를 위한 수백 개의 무료 API 엔드포인트를 이용하세요. 완전한 문서와 빠른 응답을 제공합니다.',
     url: 'https://puruboy-api.vercel.app',
     siteName: 'PuruBoy API',
-    locale: 'id_ID',
+    locale: 'ko_KR',
     type: 'website',
     images: [
       {
         url: 'https://puruboy-api.vercel.app/og',
         width: 1200,
         height: 630,
-        alt: 'PuruBoy API - Platform REST API Gratis Indonesia',
+        alt: 'PuruBoy API - 무료 REST API 플랫폼',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PuruBoy API - Platform REST API & Tools AI Gratis',
-    description: 'Platform REST API gratis untuk developer Indonesia dengan fitur AI, Downloader, Anime, dan Tools.',
+    title: 'PuruBoy API - 무료 REST API 및 AI 도구',
+    description: 'AI, 다운로더, 애니메이션 및 개발 도구를 제공하는 개발자용 무료 REST API 플랫폼입니다.',
     creator: '@puruboy',
     images: ['https://puruboy-api.vercel.app/og'],
   },
@@ -81,7 +81,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id">
+    <html lang="ko">
       <body className="antialiased pb-24">
         <JsonLd />
         <Script 

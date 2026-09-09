@@ -3,12 +3,12 @@ import blogService from '../../lib/blogService';
 import BlogClient from '../../components/BlogClient';
 
 export const metadata = {
-    title: 'Blog & Tutorial | PuruBoy API',
-    description: 'Blog resmi PuruBoy API. Dapatkan tutorial penggunaan API, informasi update fitur terbaru, changelog sistem, dan tips & trik untuk developer Indonesia.',
+    title: '블로그 및 튜토리얼 | PuruBoy API',
+    description: 'PuruBoy API 공식 블로그입니다. API 사용 튜토리얼, 최신 기능 업데이트, 변경 이력과 개발 팁을 확인하세요.',
     keywords: ['Blog PuruBoy API', 'Tutorial API Indonesia', 'Update API', 'Changelog', 'Tips Developer', 'PuruBoy Tutorial'],
     openGraph: {
-        title: 'Blog & Tutorial PuruBoy API',
-        description: 'Tutorial, update fitur, dan tips seputar PuruBoy API untuk developer Indonesia.',
+        title: 'PuruBoy API 블로그 및 튜토리얼',
+        description: 'PuruBoy API 튜토리얼, 기능 업데이트 및 개발 팁을 제공합니다.',
         url: 'https://puruboy-api.vercel.app/blog',
         siteName: 'PuruBoy API',
         type: 'website',
@@ -31,7 +31,7 @@ export default async function BlogPage() {
         totalPages = data?.totalPages || 1;
     } catch (err) {
         console.error("Failed to fetch blogs:", err);
-        error = "Gagal memuat postingan blog.";
+        error = "블로그 게시물을 불러오지 못했습니다.";
         initialPosts = [];
     }
 
@@ -39,8 +39,8 @@ export default async function BlogPage() {
         <div className="animate-fade-in pb-8">
             <div className="sticky-header -mx-4 px-4 py-4 mb-6 flex justify-between items-end">
                 <div>
-                    <h1 className="text-2xl font-bold text-primary tracking-tight">Blog Updates</h1>
-                    <p className="text-xs text-secondary mt-1">Berita & Tutorial PuruBoy API</p>
+                    <h1 className="text-2xl font-bold text-primary tracking-tight">블로그 업데이트</h1>
+                    <p className="text-xs text-secondary mt-1">PuruBoy API 소식 및 튜토리얼</p>
                 </div>
                 <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center text-accent">
                     <i className="fas fa-newspaper"></i>
@@ -60,7 +60,7 @@ export default async function BlogPage() {
             ) : (
                 <div className="text-center py-20 text-muted flex flex-col items-center">
                     <i className="far fa-folder-open text-4xl mb-3 opacity-50"></i>
-                    <p>Belum ada postingan.</p>
+                    <p>아직 게시물이 없습니다.</p>
                 </div>
             )}
         </div>
