@@ -41,8 +41,8 @@ export default function ListPage() {
         <div className="animate-fade-in pb-8">
             <div className="sticky-header -mx-4 px-4 py-4 mb-6 flex justify-between items-end">
                 <div>
-                    <h1 className="text-2xl font-bold text-primary tracking-tight">Custom Pages</h1>
-                    <p className="text-xs text-secondary mt-1">Daftar halaman yang tersedia</p>
+                    <h1 className="text-2xl font-bold text-primary tracking-tight">사용자 페이지</h1>
+                    <p className="text-xs text-secondary mt-1">사용 가능한 페이지 목록</p>
                 </div>
                 <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center text-accent">
                     <i className="fas fa-file-alt"></i>
@@ -51,9 +51,9 @@ export default function ListPage() {
 
             <div className="mb-6 relative">
                 <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-muted text-sm"></i>
-                <input 
-                    type="text" 
-                    placeholder="Cari halaman..." 
+                <input
+                    type="text"
+                    placeholder="페이지 검색..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full bg-input border border-default rounded-2xl py-3 pl-11 pr-4 text-sm text-primary focus:outline-none focus:border-accent transition-all shadow-inner"
@@ -69,35 +69,35 @@ export default function ListPage() {
                     {pages.map(p => (
                         <div key={p.slug} className="native-card p-4 hover:border-accent/40 transition-colors">
                             <h3 className="font-bold text-primary text-sm mb-1">{p.title}</h3>
-                            <p className="text-xs text-secondary mb-3 leading-relaxed">{p.description || 'Tidak ada deskripsi.'}</p>
-                            <Link 
-                                href={`/page/${p.slug}`} 
-                                target="_blank" 
+                            <p className="text-xs text-secondary mb-3 leading-relaxed">{p.description || '설명이 없습니다.'}</p>
+                            <Link
+                                href={`/page/${p.slug}`}
+                                target="_blank"
                                 className="inline-flex items-center gap-2 bg-accent/10 text-accent hover:bg-accent hover:text-white text-xs font-bold px-4 py-2 rounded-xl transition-all"
                             >
-                                <i className="fas fa-external-link-alt"></i> Buka Halaman
+                                <i className="fas fa-external-link-alt"></i> 페이지 열기
                             </Link>
                         </div>
                     ))}
 
                     {totalPages > 1 && (
                         <div className="flex justify-between items-center mt-6">
-                            <button 
-                                disabled={page === 1} 
+                            <button
+                                disabled={page === 1}
                                 onClick={() => setPage(p => p - 1)}
                                 className="text-xs font-bold px-4 py-2 bg-input border border-default hover:bg-white/5 rounded-xl disabled:opacity-50 transition-colors"
                             >
-                                <i className="fas fa-chevron-left mr-1"></i> Prev
+                                <i className="fas fa-chevron-left mr-1"></i> 이전
                             </button>
                             <span className="text-xs font-bold text-muted bg-card px-3 py-1.5 rounded-lg border border-default">
                                 {page} / {totalPages}
                             </span>
-                            <button 
-                                disabled={page === totalPages} 
+                            <button
+                                disabled={page === totalPages}
                                 onClick={() => setPage(p => p + 1)}
                                 className="text-xs font-bold px-4 py-2 bg-input border border-default hover:bg-white/5 rounded-xl disabled:opacity-50 transition-colors"
                             >
-                                Next <i className="fas fa-chevron-right ml-1"></i>
+                                다음 <i className="fas fa-chevron-right ml-1"></i>
                             </button>
                         </div>
                     )}
@@ -105,7 +105,7 @@ export default function ListPage() {
             ) : (
                 <div className="text-center py-20 text-muted">
                     <i className="fas fa-ghost text-4xl mb-3 opacity-50"></i>
-                    <p>Tidak ada halaman ditemukan.</p>
+                    <p>페이지를 찾을 수 없습니다.</p>
                 </div>
             )}
         </div>

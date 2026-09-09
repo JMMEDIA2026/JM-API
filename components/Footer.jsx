@@ -26,14 +26,14 @@ export default function Footer() {
                         unoptimized
                         className="rounded-md bg-white p-0.5" 
                     />
-                    <span>Support Saya</span>
+                    <span>후원하기</span>
                     <i className="fas fa-chevron-right text-xs opacity-70"></i>
                 </Link>
             </div>
 
             <div className="text-center">
                 <p className="text-muted text-[10px] uppercase tracking-[0.4em] font-black opacity-40">
-                    PuruBoy API &copy; {new Date().getFullYear()} • Crafted for Excellence
+                    PuruBoy API &copy; {new Date().getFullYear()} • 정성을 담아 제작
                 </p>
             </div>
         </footer>

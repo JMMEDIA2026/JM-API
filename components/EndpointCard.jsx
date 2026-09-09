@@ -241,7 +241,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
             }
         } catch (error) {
             setIsLoading(false);
-            setFinalData({ ok: false, status: 'Error', data: error.message, isStream: false });
+            setFinalData({ ok: false, status: '오류', data: error.message, isStream: false });
         }
     };
     const handleInputChange = (e) => {
@@ -432,14 +432,14 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                             <div className="flex border-b border-default bg-black/10">
                                 {['params', 'example', ...(hasGuide ? ['raw'] : []), 'response'].map(tab => (
                                     <button 
-                                        key={tab}
+                                        key={{ params: '매개변수', example: '예제', raw: '원문', response: '응답' }[tab]}
                                         onClick={() => setActiveTab(tab)} 
                                         className={`flex-1 py-3 text-xs font-bold uppercase tracking-wide transition-all 
                                             ${activeTab === tab 
                                                 ? 'text-accent border-b-2 border-accent bg-accent/5' 
                                                 : 'text-muted hover:text-secondary'}`}
                                     >
-                                        {tab}
+                                        {{ params: '매개변수', example: '예제', raw: '원문', response: '응답' }[tab]}
                                     </button>
                                 ))}
                             </div>
@@ -475,7 +475,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                                                 : 'bg-gray-600/30 text-gray-400 hover:bg-gray-600/50 hover:text-gray-200'
                                                         }`}
                                                     >
-                                                        <i className="fas fa-magic"></i> {autoFillActive ? 'Filled ✓' : 'Auto Fill'}
+                                                        <i className="fas fa-magic"></i> {autoFillActive ? '입력됨 ✓' : '자동 입력'}
                                                     </button>
                                                 </div>
                                             )}
@@ -486,7 +486,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                                         <div className="flex items-start gap-2 p-3 rounded-xl bg-red-900/30 border border-red-500/40 text-red-300 text-xs animate-fade-in">
                                                             <i className="fas fa-triangle-exclamation mt-0.5"></i>
                                                             <span>
-                                                                Wajib isi payload lengkap: <b>{missingParams.join(', ')}</b>
+                                                                필수 페이로드를 모두 입력하세요: <b>{missingParams.join(', ')}</b>
                                                             </span>
                                                         </div>
                                                     )}
@@ -499,9 +499,9 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                                                 <div className="flex gap-2">
                                                                     <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 text-gray-400 uppercase">{param.in}</span>
                                                                     {param.required ? (
-                                                                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-red-900/30 text-red-400 font-bold uppercase">Required</span>
+                                                                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-red-900/30 text-red-400 font-bold uppercase">필수</span>
                                                                     ) : (
-                                                                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 text-gray-500 uppercase">Optional</span>
+                                                                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 text-gray-500 uppercase">선택</span>
                                                                     )}
                                                                 </div>
                                                             </div>
@@ -524,7 +524,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                                                             }`}
                                                                         >
                                                                             <option value="" disabled>
-                                                                                {`Pilih ${param.name}...`}
+                                                                                {`${param.name} 선택...`}
                                                                             </option>
                                                                             {param.choices.map(choice => (
                                                                                 <option key={String(choice.value)} value={String(choice.value)}>
@@ -542,7 +542,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                                                 <input
                                                                     name={param.name}
                                                                     type={param.type === 'file' ? 'file' : 'text'}
-                                                                    placeholder={`Enter ${param.name}...`}
+                                                                    placeholder={`${param.name} 입력...`}
                                                                     {...(param.type !== 'file' ? { 
                                                                         value: formValues[param.name] || '', 
                                                                         onChange: handleInputChange 
@@ -563,7 +563,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                                 </div>
                                             ) : (
                                                 <div className="text-center py-6 bg-input/50 rounded-xl border border-dashed border-default">
-                                                    <p className="text-sm text-muted">Tidak ada parameter yang diperlukan.</p>
+                                                    <p className="text-sm text-muted">필요한 매개변수가 없습니다.</p>
                                                 </div>
                                             )}
                                             
@@ -573,7 +573,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                                 className="mt-6 w-full bg-accent hover:bg-accent-hover text-white font-bold py-3 rounded-xl text-sm shadow-lg shadow-accent/20 transition-all active:scale-95 flex items-center justify-center gap-2"
                                             >
                                                 {isLoading ? <i className="fas fa-circle-notch fa-spin"></i> : <i className="fas fa-play"></i>}
-                                                {isLoading ? 'Processing...' : 'Test Endpoint'}
+                                                {isLoading ? '처리 중...' : '엔드포인트 테스트'}
                                             </button>
                                         </form>
                                     </div>
@@ -602,7 +602,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                             <div className="relative group">
                                                 <pre className="bg-code p-4 rounded-xl overflow-x-auto text-xs border border-default custom-scrollbar shadow-inner">
                                                     <code className="language-javascript font-mono">
-                                                        {endpoint.example ? endpoint.example.replace(/fetch\(['"](.*?)['"]/g, `fetch('${baseUrl}$1'`) : '// Tidak ada contoh tersedia'}
+                                                        {endpoint.example ? endpoint.example.replace(/fetch\(['"](.*?)['"]/g, `fetch('${baseUrl}$1'`) : '// 사용 가능한 예제가 없습니다'}
                                                     </code>
                                                 </pre>
                                                 {endpoint.example && (
@@ -646,7 +646,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                         {!finalData && !isLoading && (
                                             <div className="flex flex-col items-center justify-center h-full py-8 text-muted space-y-2">
                                                 <i className="fas fa-terminal text-2xl mb-2 opacity-50"></i>
-                                                <p className="text-xs">Tekan &ldquo;Test Endpoint&rdquo; untuk melihat hasil.</p>
+                                                <p className="text-xs">Tekan &ldquo;엔드포인트 테스트&rdquo; untuk melihat hasil.</p>
                                             </div>
                                         )}
                                         
@@ -661,7 +661,7 @@ const EndpointCard = memo(function EndpointCard({ endpoint, baseUrl, id, isHighl
                                             <div className="relative">
                                                 <div className={`flex justify-between items-center mb-2 px-1`}>
                                                     <span className={`text-xs font-bold px-2 py-1 rounded ${finalData.ok ? 'bg-green-900/30 text-green-400' : 'bg-red-900/30 text-red-400'}`}>
-                                                        {finalData.status} {finalData.ok ? 'OK' : 'Error'}
+                                                        {finalData.status} {finalData.ok ? 'OK' : '오류'}
                                                         {finalData.isImage && <span className="ml-2 text-[10px] bg-blue-900/30 text-blue-400 px-1.5 py-0.5 rounded">IMAGE</span>}
                                                         {finalData.isMedia && (
                                                             <span className="ml-2 text-[10px] bg-blue-900/30 text-blue-400 px-1.5 py-0.5 rounded">

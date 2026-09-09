@@ -77,8 +77,8 @@ const getRelativeDateLabel = (dateString) => {
     const diffTime = n - d;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-    if (diffDays === 0) return 'Today';
-    if (diffDays === 1) return 'Yesterday';
+    if (diffDays === 0) return '오늘';
+    if (diffDays === 1) return '어제';
     return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
 };
 
@@ -176,8 +176,8 @@ const SECRET_KEY = 'PuruBoyChatSecureKey2025';
 
 export default function ChatPage() {
     const router = useRouter();
-    const [username, setUsername] = useState('');
-    const [tempUsername, setTempUsername] = useState('');
+    const [username, set사용자 이름] = useState('');
+    const [temp사용자 이름, setTemp사용자 이름] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     
     const [chats, setChats] = useState([]);
@@ -199,7 +199,7 @@ export default function ChatPage() {
     useEffect(() => {
         const storedUser = localStorage.getItem('puruboy-chat-username');
         if (storedUser) {
-            setUsername(storedUser);
+            set사용자 이름(storedUser);
             setIsLoggedIn(true);
         }
 
@@ -297,10 +297,10 @@ export default function ChatPage() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if (!tempUsername.trim()) return;
-        const cleanName = tempUsername.trim().substring(0, 15);
+        if (!temp사용자 이름.trim()) return;
+        const cleanName = temp사용자 이름.trim().substring(0, 15);
         localStorage.setItem('puruboy-chat-username', cleanName);
-        setUsername(cleanName);
+        set사용자 이름(cleanName);
         setIsLoggedIn(true);
     };
 
@@ -328,9 +328,9 @@ export default function ChatPage() {
                 virtuosoRef.current?.scrollToIndex({ index: chats.length, align: 'end', behavior: 'smooth' });
             } else {
                 if (res.status === 429) {
-                    alert('Slow down! 2 seconds cooldown.');
+                    alert('잠시만 기다려 주세요. 2초 후 다시 시도할 수 있습니다.');
                 } else {
-                    alert('Failed to send message.');
+                    alert('메시지를 보내지 못했습니다.');
                 }
             }
         } catch (e) {
@@ -354,11 +354,11 @@ export default function ChatPage() {
         await sendMessageToApi(msg);
     };
 
-    const handleLogout = () => {
-        if(confirm("Logout from community?")) {
+    const handle로그아웃 = () => {
+        if(confirm("커뮤니티에서 로그아웃할까요?")) {
             localStorage.removeItem('puruboy-chat-username');
             setIsLoggedIn(false);
-            setUsername('');
+            set사용자 이름('');
         }
     };
 
@@ -403,19 +403,19 @@ export default function ChatPage() {
                         <i className="fab fa-discord text-4xl text-white"></i>
                     </div>
                     
-                    <h1 className="text-2xl font-bold text-[#f2f3f5] mb-2">Welcome Back!</h1>
+                    <h1 className="text-2xl font-bold text-[#f2f3f5] mb-2">다시 오신 것을 환영합니다!</h1>
                     <p className="text-[#b5bac1] text-sm mb-8">
-                        Join the PuruBoy Community chat.
+                        PuruBoy 커뮤니티 채팅에 참여하세요.
                     </p>
                     
                     <form onSubmit={handleLogin} className="space-y-4 text-left">
                         <div>
-                            <label className="text-xs font-bold text-[#b5bac1] uppercase mb-2 block">Username</label>
+                            <label className="text-xs font-bold text-[#b5bac1] uppercase mb-2 block">사용자 이름</label>
                             <input 
                                 type="text" 
                                 className="w-full bg-[#1e1f22] border-none rounded-md px-3 py-2.5 text-[#dbdee1] focus:outline-none focus:ring-2 focus:ring-[#5865f2] transition-all"
-                                value={tempUsername}
-                                onChange={(e) => setTempUsername(e.target.value)}
+                                value={temp사용자 이름}
+                                onChange={(e) => setTemp사용자 이름(e.target.value)}
                                 maxLength={15}
                                 required
                             />
@@ -424,7 +424,7 @@ export default function ChatPage() {
                             type="submit" 
                             className="w-full bg-[#5865f2] hover:bg-[#4752c4] text-white font-bold py-3 rounded-md transition-colors"
                         >
-                            Log In
+                            로그인
                         </button>
                     </form>
                 </div>
@@ -447,7 +447,7 @@ export default function ChatPage() {
                     </div>
                 </div>
                 <div className="flex gap-4 text-[#b5bac1]">
-                    <button onClick={handleLogout} title="Logout" className="hover:text-[#dbdee1]">
+                    <button onClick={handle로그아웃} title="로그아웃" className="hover:text-[#dbdee1]">
                         <i className="fas fa-sign-out-alt"></i>
                     </button>
                 </div>
@@ -460,8 +460,8 @@ export default function ChatPage() {
                         <div className="w-16 h-16 bg-[#2b2d31] rounded-full flex items-center justify-center mb-4">
                             <i className="fas fa-hashtag text-2xl text-[#5865f2]"></i>
                         </div>
-                        <h2 className="text-xl font-bold text-[#f2f3f5] mb-2">Welcome to #general</h2>
-                        <p className="text-sm">This is the start of the PuruBoy Community server.</p>
+                        <h2 className="text-xl font-bold text-[#f2f3f5] mb-2">#general에 오신 것을 환영합니다</h2>
+                        <p className="text-sm">PuruBoy 커뮤니티 서버의 대화가 여기서 시작됩니다.</p>
                     </div>
                 ) : (
                     <Virtuoso
@@ -516,7 +516,7 @@ export default function ChatPage() {
                         type="text" 
                         value={inputMsg}
                         onChange={(e) => setInputMsg(e.target.value)}
-                        placeholder={`Message #${username}`}
+                        placeholder={`#${username}에 메시지 보내기`}
                         className="w-full bg-transparent border-none text-[#dbdee1] placeholder-[#949ba4] text-[15px] focus:ring-0 px-0 py-0 outline-none"
                         maxLength={1000}
                         onKeyDown={(e) => e.key === 'Enter' && handleSend(e)}

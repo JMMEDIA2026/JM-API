@@ -77,8 +77,8 @@ const ManualInputForm = ({ endpoint, onSubmit, onCancel }) => {
                 </div>
             ))}
             <div className="flex gap-3 pt-2">
-                <button type="button" onClick={onCancel} className="flex-1 py-3 text-sm font-bold text-muted hover:text-white bg-transparent border border-default rounded-xl transition-colors">Batal</button>
-                <button type="submit" className="flex-1 py-3 text-sm font-bold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-lg shadow-accent/20 transition-transform active:scale-95">Lanjutkan</button>
+                <button type="button" onClick={onCancel} className="flex-1 py-3 text-sm font-bold text-muted hover:text-white bg-transparent border border-default rounded-xl transition-colors">취소</button>
+                <button type="submit" className="flex-1 py-3 text-sm font-bold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-lg shadow-accent/20 transition-transform active:scale-95">계속</button>
             </div>
         </form>
     );
@@ -89,7 +89,7 @@ export default function DocsClient({ apiSpec }) {
     const [searchQuery, setSearchQuery] = useState('');
     const [baseUrl, setBaseUrl] = useState('');
     const [isTocOpen, setIsTocOpen] = useState(false);
-    
+
     // Shared Endpoint State
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -157,22 +157,22 @@ export default function DocsClient({ apiSpec }) {
 
     const handleConfirmShare = () => {
         if (!sharedEndpoint) return;
-        
+
         setShowShareModal(false);
         setActiveCategory('all');
         setSearchQuery('');
-        
+
         const newUrl = window.location.pathname;
         window.history.replaceState({}, '', newUrl);
 
         setTimeout(() => {
             const elementId = `ep-${sharedEndpoint.method}-${sharedEndpoint.path}`.replace(/[^a-zA-Z0-9-]/g, '_');
             const element = document.getElementById(elementId);
-            
+
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 setHighlightedEndpoint(elementId);
-                
+
                 setTimeout(() => {
                     setHighlightedEndpoint(null);
                 }, 2000);
@@ -237,7 +237,7 @@ export default function DocsClient({ apiSpec }) {
         const selectedList = [];
         if (apiSpec) {
             Object.values(apiSpec).forEach(endpoints => {
-                endpoints.forEach(ep => {
+               endpoints.forEach(ep => {
                     if (selectedEndpoints.has(ep.path)) {
                         selectedList.push(ep);
                     }
@@ -306,7 +306,7 @@ export default function DocsClient({ apiSpec }) {
 
                 const finalUrl = `${baseUrl}${pathWithQuery}`;
                 const fetchOptions = { method: ep.method, headers: {} };
-                
+
                 if (isMultipart) {
                     fetchOptions.body = formPayload;
                 } else if (bodyParams) {
@@ -322,16 +322,16 @@ export default function DocsClient({ apiSpec }) {
                     responseData = `[Image Response] Content-Type: ${contentType}, Size: ${(await res.clone().blob()).size} bytes`;
                 } else if (contentType.includes("application/json")) {
                     let json = await res.json();
-                    
+
                     // Polling Logic
                     if (json.status === 'queued' && json.pollingUrl) {
                         // Capture the original JSON response containing the polling URL
                         const initialResponse = JSON.parse(JSON.stringify(json));
-                        
+
                         let isPolling = true;
                         let attempts = 0;
                         const maxAttempts = 40;
-                        
+
                         while (isPolling && attempts < maxAttempts) {
                             attempts++;
                             await new Promise(r => setTimeout(r, 3000));
@@ -339,7 +339,7 @@ export default function DocsClient({ apiSpec }) {
                             if (pollRes.ok) {
                                 const pollJson = await pollRes.json();
                                 const pollResult = pollJson.result || pollJson;
-                                
+
                                 if (pollResult.status === 'success' || pollResult.status === 'completed') {
                                     json = pollJson;
                                     isPolling = false;
@@ -353,7 +353,7 @@ export default function DocsClient({ apiSpec }) {
                                 errors.push(`[${ep.path}] Polling server returned ${pollRes.status}`);
                             }
                         }
-                        
+
                         // Sertakan json asli yang mengembalikan polling url
                         responseData = `Initial Response (Polling Started):\n${JSON.stringify(initialResponse, null, 2)}\n\nFinal Result (After Polling):\n${JSON.stringify(json, null, 2)}`;
                     } else {
@@ -368,7 +368,7 @@ export default function DocsClient({ apiSpec }) {
                         if (done) break;
                         streamText += decoder.decode(value, { stream: true });
                     }
-                    
+
                     const trueMatch = streamText.match(/\[true\]\s+(https?:\/\/\S+)/);
                     const falseMatch = streamText.match(/\[false\]\s+([\s\S]+)/);
 
@@ -469,12 +469,12 @@ export default function DocsClient({ apiSpec }) {
                         <div className="bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-lg shadow-accent/20">
                             v1.0
                         </div>
-                        <button 
+                        <button
                             onClick={toggleSelectionMode}
                             className={`text-[10px] font-bold px-2.5 py-1 rounded-lg transition-colors border ${selectionMode ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700' : 'bg-transparent text-accent border-accent/50 hover:bg-accent/10'}`}
                         >
-                            <i className={`fas ${selectionMode ? 'fa-times' : 'fa-list-check'} mr-1`}></i> 
-                            {selectionMode ? 'Cancel Context' : 'To Context'}
+                            <i className={`fas ${selectionMode ? 'fa-times' : 'fa-list-check'} mr-1`}></i>
+                            {selectionMode ? '컨텍스트 취소' : '컨텍스트로 추가'}
                         </button>
                     </div>
                 </div>
@@ -482,10 +482,10 @@ export default function DocsClient({ apiSpec }) {
                 {/* Search */}
                 <div className="relative mb-3">
                     <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-muted text-sm"></i>
-                    <input 
-                        type="text" 
-                        placeholder="Cari endpoint atau keyword..." 
-                        value={searchQuery} 
+                    <input
+                        type="text"
+                        placeholder="엔드포인트 또는 키워드 검색..."
+                        value={searchQuery}
                         onChange={(e) => {
                             setSearchQuery(e.target.value);
                             setActiveCategory('all');
@@ -506,10 +506,10 @@ export default function DocsClient({ apiSpec }) {
                 {/* Search Result Hint */}
                 {searchQuery && (
                     <div className="text-xs text-muted px-1 mb-2">
-                        Ditemukan <span className="text-accent font-bold">{filteredCount}</span> endpoint untuk &ldquo;{searchQuery}&rdquo;
+                        검색 결과: <span className="text-accent font-bold">{filteredCount}</span>개 엔드포인트 &ldquo;{searchQuery}&rdquo;
                     </div>
                 )}
-                
+
                 {/* Category Pills */}
                 {!searchQuery && (
                     <div className="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
@@ -521,7 +521,7 @@ export default function DocsClient({ apiSpec }) {
                             className={`whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold transition-all active:scale-95 flex items-center gap-1.5 ${activeCategory === 'all' ? 'bg-accent text-white shadow-lg shadow-accent/25' : 'bg-card border border-default text-secondary hover:border-accent/40'}`}
                         >
                             <i className="fas fa-border-all text-[10px]"></i>
-                            All
+                            전체
                             <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-mono ${activeCategory === 'all' ? 'bg-white/20' : 'bg-white/5'}`}>
                                 {totalEndpoints}
                             </span>
@@ -558,7 +558,7 @@ export default function DocsClient({ apiSpec }) {
                                 <h3 className="text-lg font-extrabold text-primary tracking-tight uppercase">
                                     {category}
                                 </h3>
-                                <p className="text-[10px] text-muted font-mono">{endpoints.length} endpoints</p>
+                                <p className="text-[10px] text-muted font-mono">{endpoints.length}개 엔드포인트</p>
                             </div>
                             <div className="ml-auto h-px flex-1 bg-gradient-to-r from-accent/30 to-transparent max-w-[80px]"></div>
                         </div>
@@ -566,10 +566,10 @@ export default function DocsClient({ apiSpec }) {
                             {endpoints.map((endpoint, index) => {
                                 const epId = `ep-${endpoint.method}-${endpoint.path}`.replace(/[^a-zA-Z0-9-]/g, '_');
                                 return (
-                                    <EndpointCard 
-                                        key={index} 
-                                        endpoint={endpoint} 
-                                        baseUrl={baseUrl} 
+                                    <EndpointCard
+                                        key={index}
+                                        endpoint={endpoint}
+                                        baseUrl={baseUrl}
                                         id={epId}
                                         isHighlighted={highlightedEndpoint === epId}
                                         selectionMode={selectionMode}
@@ -581,18 +581,18 @@ export default function DocsClient({ apiSpec }) {
                         </div>
                     </div>
                 ))}
-                
+
                 {(!filteredSpec || Object.keys(filteredSpec).length === 0) && (
                     <div className="text-center py-24 text-muted bg-card rounded-3xl border border-dashed border-default mx-2">
                         <i className="fas fa-ghost text-5xl mb-4 opacity-20 block"></i>
-                        <p className="font-bold text-sm text-primary">Tidak ditemukan</p>
-                        <p className="text-xs mt-1">Coba kata kunci yang berbeda</p>
+                        <p className="font-bold text-sm text-primary">찾을 수 없습니다</p>
+                        <p className="text-xs mt-1">다른 키워드로 검색해 보세요</p>
                         {searchQuery && (
                             <button
                                 onClick={() => setSearchQuery('')}
                                 className="mt-4 text-xs bg-accent/10 text-accent border border-accent/20 px-4 py-2 rounded-xl font-bold hover:bg-accent/20 transition-colors"
                             >
-                                Reset Pencarian
+                                검색 초기화
                             </button>
                         )}
                     </div>
@@ -603,40 +603,40 @@ export default function DocsClient({ apiSpec }) {
             {selectionMode && (
                 <div className="fixed bottom-[80px] md:bottom-10 left-4 right-4 md:left-auto md:right-5 md:w-[340px] bg-card/95 backdrop-blur-xl border border-accent/50 p-4 rounded-2xl shadow-[0_10px_40px_rgba(236,72,153,0.3)] z-[70] flex flex-col gap-3 animate-slide-up max-h-[60vh]">
                     <div className="flex justify-between items-center shrink-0">
-                        <span className="text-sm font-bold text-white">{selectedEndpoints.size} Endpoint Terpilih</span>
-                        <button onClick={() => setSelectedEndpoints(new Set())} className="text-xs text-muted hover:text-red-400 font-bold px-2 py-1 bg-white/5 rounded">Clear</button>
+                        <span className="text-sm font-bold text-white">{selectedEndpoints.size}개 엔드포인트 선택됨</span>
+                        <button onClick={() => setSelectedEndpoints(new Set())} className="text-xs text-muted hover:text-red-400 font-bold px-2 py-1 bg-white/5 rounded">지우기</button>
                     </div>
-                    
+
                     {contextErrors.length > 0 && (
                         <div className="text-[10px] text-red-400 overflow-y-auto custom-scrollbar bg-red-900/10 p-2 rounded border border-red-900/30 font-mono space-y-1">
                             {contextErrors.map((err, i) => <div key={i}>• {err}</div>)}
                         </div>
                     )}
-                    
-                    <button 
+
+                    <button
                         onClick={generateContext}
                         disabled={selectedEndpoints.size === 0 || isGeneratingContext}
                         className="w-full shrink-0 bg-accent hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl text-sm shadow-lg shadow-accent/30 transition-all active:scale-95 flex items-center justify-center gap-2"
                     >
                         {isGeneratingContext ? <i className="fas fa-spinner fa-spin"></i> : <i className="fas fa-download"></i>}
-                        {isGeneratingContext ? 'Generating...' : 'Generate Context'}
+                        {isGeneratingContext ? '생성 중...' : '컨텍스트 생성'}
                     </button>
                 </div>
             )}
 
             {/* Manual Input Request Modal */}
-            <InfoModal 
-                isOpen={manualInputState.isOpen} 
-                onClose={handleManualCancel} 
-                title="Input Manual Diperlukan"
+            <InfoModal
+                isOpen={manualInputState.isOpen}
+                onClose={handleManualCancel}
+                title="수동 입력 필요"
             >
                 {manualInputState.endpoint && (
                     <div className="space-y-4">
                         <div className="bg-yellow-900/20 border border-yellow-700/50 p-3 rounded-xl text-yellow-500 text-xs leading-relaxed">
                             <i className="fas fa-exclamation-triangle mr-2"></i>
-                            Endpoint <strong className="font-mono text-white">{manualInputState.endpoint.path}</strong> memerlukan input payload manual untuk melanjutkan proses context.
+                            Endpoint <strong className="font-mono text-white">{manualInputState.endpoint.path}</strong> 에서 컨텍스트 생성을 계속하려면 수동 페이로드 입력이 필요합니다.
                         </div>
-                        <ManualInputForm 
+                        <ManualInputForm
                             endpoint={manualInputState.endpoint}
                             onSubmit={handleManualSubmit}
                             onCancel={handleManualCancel}
@@ -648,8 +648,8 @@ export default function DocsClient({ apiSpec }) {
             {/* Expert Comments Section */}
             <div className="mt-16 mb-8">
                 <div className="text-center mb-6">
-                    <h2 className="text-lg font-extrabold text-primary tracking-tight">Kata Para Ahli</h2>
-                    <p className="text-xs text-muted mt-1">Pendapat dari developer &amp; pakar teknologi</p>
+                    <h2 className="text-lg font-extrabold text-primary tracking-tight">전문가 의견</h2>
+                    <p className="text-xs text-muted mt-1">개발자와 기술 전문가의 의견</p>
                 </div>
                 <div className="space-y-4">
                     {EXPERT_COMMENTS.map((expert, index) => (
@@ -678,12 +678,12 @@ export default function DocsClient({ apiSpec }) {
 
             {/* Footer Copyright */}
             <footer className="mt-8 pt-6 border-t border-default text-center">
-                <p className="text-xs text-muted">PuruBoy API &copy; {new Date().getFullYear()} - All rights reserved.</p>
+                <p className="text-xs text-muted">PuruBoy API &copy; {new Date().getFullYear()} - 전체 rights reserved.</p>
             </footer>
 
             {/* Floating TOC Button */}
             {!selectionMode && (
-                <button 
+                <button
                     onClick={() => setIsTocOpen(!isTocOpen)}
                     className="fixed bottom-24 right-5 w-14 h-14 bg-accent hover:bg-accent-hover text-white rounded-full shadow-2xl shadow-accent/30 flex items-center justify-center z-50 active:scale-90 transition-all md:hidden border-2 border-white/10"
                 >
@@ -695,10 +695,10 @@ export default function DocsClient({ apiSpec }) {
             {isTocOpen && !selectionMode && (
                 <div className="fixed bottom-40 right-5 bg-card/95 backdrop-blur-xl border border-default rounded-2xl shadow-2xl p-2 z-50 flex flex-col gap-1 min-w-[190px] max-h-80 overflow-y-auto animate-slide-up origin-bottom-right">
                     <div className="text-[10px] font-bold text-muted px-3 py-2 uppercase tracking-widest border-b border-default mb-1">
-                        <i className="fas fa-compass mr-1 text-accent"></i> Jump to
+                        <i className="fas fa-compass mr-1 text-accent"></i> 이동
                     </div>
                     {categories.map(cat => (
-                        <button 
+                        <button
                             key={cat}
                             onClick={() => {
                                 document.getElementById(`cat-${cat}`)?.scrollIntoView({ behavior: 'smooth' });
@@ -719,10 +719,10 @@ export default function DocsClient({ apiSpec }) {
             )}
 
             {/* Share Confirmation Modal */}
-            <InfoModal 
-                isOpen={showShareModal} 
-                onClose={() => setShowShareModal(false)} 
-                title="Buka Endpoint?"
+            <InfoModal
+                isOpen={showShareModal}
+                onClose={() => setShowShareModal(false)}
+                title="엔드포인트를 열까요?"
             >
                 <div className="space-y-4">
                     <div className="flex items-center gap-4 bg-input p-4 rounded-xl border border-default">
@@ -730,25 +730,25 @@ export default function DocsClient({ apiSpec }) {
                             <i className="fas fa-share-alt text-accent text-xl"></i>
                         </div>
                         <div>
-                            <p className="text-sm text-secondary mb-1">Anda mengakses melalui link berbagi.</p>
+                            <p className="text-sm text-secondary mb-1">공유 링크로 접속했습니다.</p>
                             <p className="text-xs font-mono text-accent break-all">{sharedEndpoint?.path}</p>
                         </div>
                     </div>
                     <p className="text-sm text-center text-muted">
-                        Apakah Anda ingin langsung menuju ke detail endpoint ini?
+                        이 엔드포인트 상세로 바로 이동할까요?
                     </p>
                     <div className="flex gap-3 mt-4">
-                        <button 
+                        <button
                             onClick={() => setShowShareModal(false)}
                             className="flex-1 py-3 text-sm font-bold text-muted hover:text-white bg-transparent border border-default rounded-xl transition-colors"
                         >
-                            Batal
+                            취소
                         </button>
-                        <button 
+                        <button
                             onClick={handleConfirmShare}
                             className="flex-1 py-3 text-sm font-bold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-lg shadow-accent/20 transition-transform active:scale-95"
                         >
-                            Ya, Buka
+                            네, 열기
                         </button>
                     </div>
                 </div>

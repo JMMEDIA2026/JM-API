@@ -6,12 +6,12 @@ import { getDocsSpec } from '../lib/docsService';
 export const revalidate = 3600;
 
 export const metadata = {
-    title: 'PuruBoy API - Platform REST API Gratis untuk Developer Indonesia',
-    description: 'Beranda PuruBoy API. Platform REST API gratis dengan fitur AI Chat (DeepSeek, GPT, Gemini), Downloader (TikTok, YouTube, IG), Anime Streaming, dan Tools Developer. Cepat, stabil, dan gratis!',
+    title: 'PuruBoy API - 개발자를 위한 무료 REST API 플랫폼',
+    description: 'PuruBoy API 홈입니다. AI 채팅, 다운로더, 애니메이션 스트리밍 및 개발 도구를 제공하는 빠르고 안정적인 무료 REST API 플랫폼입니다.',
     keywords: ['PuruBoy API', 'REST API Gratis Indonesia', 'API AI Indonesia', 'TikTok Downloader', 'YouTube Downloader API', 'Anime API', 'Developer API', 'PuruBoy'],
     openGraph: {
-        title: 'PuruBoy API - REST API Gratis Indonesia',
-        description: 'Platform REST API gratis untuk developer Indonesia. AI, Downloader, Anime, Tools — semua gratis!',
+        title: 'PuruBoy API - 무료 REST API 플랫폼',
+        description: '개발자를 위한 무료 REST API 플랫폼입니다. AI, 다운로더, 애니메이션, 개발 도구를 모두 무료로 제공합니다.',
         url: 'https://puruboy-api.vercel.app',
         siteName: 'PuruBoy API',
         type: 'website',
@@ -23,7 +23,7 @@ const Hero = () => (
         <div className="mb-4 relative z-20">
             <div className="inline-block relative">
                 <span className="text-[11px] bg-accent/10 text-accent border border-accent/20 px-3 py-1 rounded-full font-bold uppercase tracking-widest">
-                    🚀 Free & Open REST API
+                    무료 오픈 REST API
                 </span>
                 <span className="absolute -top-1 -right-2 w-3 h-3 bg-green-400 rounded-full border-2 border-[#09090b] animate-pulse z-10"></span>
             </div>
@@ -32,18 +32,18 @@ const Hero = () => (
             PuruBoy <span className="gradient-text">API</span>
         </h1>
         <p className="text-secondary text-sm leading-relaxed max-w-sm mx-auto font-medium">
-            Platform API modular terbaik dengan integrasi AI, Downloader, dan Anime Streaming. Gratis, cepat, dan mudah digunakan.
+            AI, 다운로더 및 애니메이션 스트리밍을 통합한 모듈형 API 플랫폼입니다. 무료로 빠르고 쉽게 사용할 수 있습니다.
         </p>
         
         <div className="mt-8 flex flex-col gap-3 max-w-xs mx-auto">
             <Link href="/docs" className="w-full bg-accent hover:bg-accent-hover text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-accent/30 transition-all active:scale-95 flex items-center justify-center gap-2 group">
                 <i className="fas fa-book-open text-sm"></i>
-                <span>Jelajahi Dokumentasi</span>
+                <span>문서 살펴보기</span>
                 <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
             </Link>
             <Link href="/blog" className="w-full bg-card border border-default hover:bg-white/5 text-secondary font-semibold py-3.5 rounded-2xl transition-all active:scale-95 flex items-center justify-center gap-2">
                 <i className="fas fa-newspaper text-sm"></i>
-                <span>Lihat Updates</span>
+                <span>업데이트 보기</span>
             </Link>
         </div>
     </div>
@@ -151,21 +151,21 @@ export default async function HomePage() {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-3 mb-8">
                 <StatsCard icon="fa-code-branch" count={`${stats.endpoints}+`} label="Endpoints" />
-                <StatsCard icon="fa-folder-open" count={stats.categories} label="Kategori" />
+                <StatsCard icon="fa-folder-open" count={stats.categories} label="카테고리" />
             </div>
 
             {/* Quick Access */}
             <div className="mb-8">
                 <h2 className="text-sm font-bold text-primary mb-3 px-1 flex items-center gap-2 uppercase tracking-wider">
-                    <i className="fas fa-th-large text-accent text-xs"></i> Akses Cepat
+                    <i className="fas fa-th-large text-accent text-xs"></i> 빠른 이동
                 </h2>
                 <div className="grid grid-cols-2 gap-3">
                     {[
-                        { href: '/docs', icon: 'fa-book', label: 'Dokumentasi', desc: 'Lihat semua endpoint', color: 'from-pink-600 to-rose-600' },
-                        { href: '/chat', icon: 'fa-comments', label: 'Chat Room', desc: 'Ngobrol realtime', color: 'from-blue-600 to-indigo-600' },
-                        { href: '/blog', icon: 'fa-newspaper', label: 'Blog', desc: 'Update & berita', color: 'from-purple-600 to-violet-600' },
-                        { href: '/listpage', icon: 'fa-file-alt', label: 'List Page', desc: 'Daftar custom page', color: 'from-emerald-500 to-teal-600' },
-                        { href: '/userscripts', icon: 'fa-cubes', label: 'Script Store', desc: 'UserScript auto-update', color: 'from-cyan-500 to-sky-600' },
+                        { href: '/docs', icon: 'fa-book', label: '문서', desc: '모든 엔드포인트 보기', color: 'from-pink-600 to-rose-600' },
+                        { href: '/chat', icon: 'fa-comments', label: '채팅방', desc: '실시간 대화', color: 'from-blue-600 to-indigo-600' },
+                        { href: '/blog', icon: 'fa-newspaper', label: '블로그', desc: '업데이트 및 소식', color: 'from-purple-600 to-violet-600' },
+                        { href: '/listpage', icon: 'fa-file-alt', label: '페이지 목록', desc: '사용자 페이지 목록', color: 'from-emerald-500 to-teal-600' },
+                        { href: '/userscripts', icon: 'fa-cubes', label: '스크립트 스토어', desc: 'UserScript 자동 업데이트', color: 'from-cyan-500 to-sky-600' },
                     ].map(item => (
                         <Link key={item.href} href={item.href} className="native-card p-4 flex flex-col gap-2 hover:border-accent/40 transition-all active:scale-95 group">
                             <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
@@ -182,19 +182,19 @@ export default async function HomePage() {
 
             {/* Features */}
             <h2 className="text-sm font-bold text-primary mb-3 px-1 flex items-center gap-2 uppercase tracking-wider">
-                <i className="fas fa-star text-accent text-xs"></i> Fitur Unggulan
+                <i className="fas fa-star text-accent text-xs"></i> 주요 기능
             </h2>
             <div className="space-y-3 mb-8">
-                <FeatureItem icon="fa-bolt" title="High Performance" badge="Fast" desc="Infrastruktur server yang dioptimalkan untuk respons cepat dan stabil dengan uptime tinggi." />
-                <FeatureItem icon="fa-mobile-alt" title="Mobile Friendly" desc="Dokumentasi yang didesain nyaman untuk layar kecil, scroll smooth, dan tap responsive." />
-                <FeatureItem icon="fa-flask" title="API Tester" badge="New" desc="Coba endpoint langsung dari browser tanpa aplikasi tambahan. Hasil real-time." />
-                <FeatureItem icon="fa-robot" title="AI Powered" desc="Beberapa endpoint menggunakan model AI terbaru untuk hasil yang lebih akurat dan canggih." />
+                <FeatureItem icon="fa-bolt" title="고성능" badge="빠름" desc="빠르고 안정적인 응답과 높은 가용성을 위해 최적화된 서버 인프라입니다." />
+                <FeatureItem icon="fa-mobile-alt" title="모바일 친화적" desc="작은 화면에서도 편안하게 보고, 부드럽게 스크롤하며 반응성 있게 사용할 수 있도록 설계된 문서입니다." />
+                <FeatureItem icon="fa-flask" title="API Tester" badge="신규" desc="추가 앱 없이 브라우저에서 바로 엔드포인트를 테스트하세요. 결과를 실시간으로 확인할 수 있습니다." />
+                <FeatureItem icon="fa-robot" title="AI Powered" desc="일부 엔드포인트는 더 정확하고 고도화된 결과를 위해 최신 AI 모델을 사용합니다." />
             </div>
 
             {/* Contributors */}
             <div className="mb-8 animate-fade-in">
                 <h2 className="text-sm font-bold text-primary mb-4 px-1 flex items-center gap-2 uppercase tracking-wider">
-                    <i className="fas fa-crown text-yellow-500 text-xs"></i> Top Contributors
+                    <i className="fas fa-crown text-yellow-500 text-xs"></i> 주요 기여자
                 </h2>
                 
                 <div className="flex gap-3 flex-wrap">
@@ -228,13 +228,13 @@ export default async function HomePage() {
                 </div>
             </div>
 
-            {/* Official Domains */}
+            {/* 공식 도메인 */}
             <div className="native-card p-5 mb-8 bg-gradient-to-br from-card to-transparent border border-default">
                 <h3 className="font-bold text-primary text-sm mb-4 flex items-center gap-2">
                     <div className="w-7 h-7 rounded-lg bg-accent/10 flex items-center justify-center">
                         <i className="fas fa-globe text-accent text-xs"></i>
                     </div>
-                    Official Domains
+                    공식 도메인
                 </h3>
                 <div className="space-y-2">
                     <a href="https://www.puruboy.kozow.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-input/50 hover:bg-input p-3 rounded-xl border border-default transition-all group">
@@ -242,14 +242,14 @@ export default async function HomePage() {
                             <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
                             <span className="text-xs font-mono text-gray-300 group-hover:text-accent transition-colors">www.puruboy.kozow.com</span>
                         </div>
-                        <span className="text-[9px] bg-green-500/10 text-green-400 px-2 py-1 rounded-full font-bold uppercase tracking-wider border border-green-500/20">Stabil</span>
+                        <span className="text-[9px] bg-green-500/10 text-green-400 px-2 py-1 rounded-full font-bold uppercase tracking-wider border border-green-500/20">안정적</span>
                     </a>
                     <a href="https://puruboy-api.vercel.app" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between bg-input/50 hover:bg-input p-3 rounded-xl border border-default transition-all group">
                         <div className="flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
                             <span className="text-xs font-mono text-gray-300 group-hover:text-accent transition-colors">puruboy-api.vercel.app</span>
                         </div>
-                        <span className="text-[9px] bg-blue-500/10 text-blue-400 px-2 py-1 rounded-full font-bold uppercase tracking-wider border border-blue-500/20">Cloud</span>
+                        <span className="text-[9px] bg-blue-500/10 text-blue-400 px-2 py-1 rounded-full font-bold uppercase tracking-wider border border-blue-500/20">클라우드</span>
                     </a>
                 </div>
             </div>
@@ -257,10 +257,10 @@ export default async function HomePage() {
             {/* Footer CTA */}
             <div className="mt-8 p-5 native-card text-center border-dashed border-accent/30 bg-gradient-to-b from-accent/5 to-transparent">
                 <i className="fas fa-code text-accent text-2xl mb-3 block"></i>
-                <p className="text-xs text-secondary mb-4 leading-relaxed">Mulai integrasikan PuruBoy API ke proyek kamu sekarang. Gratis, tanpa auth.</p>
+                <p className="text-xs text-secondary mb-4 leading-relaxed">지금 프로젝트에 PuruBoy API를 연동하세요. 무료이며 인증이 필요하지 않습니다.</p>
                 <Link href="/docs" className="inline-flex items-center gap-2 bg-accent text-white text-sm font-bold px-6 py-3 rounded-xl shadow-lg shadow-accent/25 hover:bg-accent-hover transition-all active:scale-95">
                     <i className="fas fa-rocket text-sm"></i>
-                    Mulai Sekarang
+                    지금 시작하기
                 </Link>
             </div>
         </div>

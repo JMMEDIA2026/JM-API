@@ -26,12 +26,12 @@ const getTimeAgo = (dateString) => {
 };
 
 const extractTitle = (content, excerpt) => {
-    if (!content) return excerpt ? excerpt.split(' ').slice(0, 8).join(' ') : 'No Title';
+    if (!content) return excerpt ? excerpt.split(' ').slice(0, 8).join(' ') : '제목 없음';
     
     const match = content.match(/^#+\s+(.*)$/m);
     if (match) return match[1];
     
-    if (!excerpt) return 'No Content';
+    if (!excerpt) return '내용 없음';
     const words = excerpt.split(' ');
     return words.slice(0, 8).join(' ') + (words.length > 8 ? '...' : '');
 };
@@ -89,7 +89,7 @@ const BlogCard = memo(({ post, onClick }) => {
                 </p>
 
                 <div className="flex items-center text-xs font-bold text-accent">
-                    Baca Selengkapnya <i className="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                    더 읽기 <i className="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
                 </div>
             </div>
         </article>
@@ -176,7 +176,7 @@ export default function BlogClient({ initialPosts, totalPages: initialTotalPages
                                 {!hasMore && posts.length > 0 && (
                                     <div className="text-center py-4">
                                         <span className="text-xs text-muted bg-card px-3 py-1 rounded-full border border-default">
-                                            — You&apos;ve reached the end —
+                                            — 마지막 게시물입니다 —
                                         </span>
                                     </div>
                                 )}
@@ -187,14 +187,14 @@ export default function BlogClient({ initialPosts, totalPages: initialTotalPages
             ) : (
                  <div className="text-center py-20 text-muted flex flex-col items-center">
                     <i className="far fa-folder-open text-4xl mb-3 opacity-50"></i>
-                    <p>Belum ada postingan.</p>
+                    <p>아직 게시물이 없습니다.</p>
                 </div>
             )}
 
             <InfoModal 
                 isOpen={!!selectedPost} 
                 onClose={() => setSelectedPost(null)} 
-                title={selectedPost ? selectedPost.tag : 'Detail Post'}
+                title={selectedPost ? selectedPost.tag : '게시물 상세'}
             >
                 {selectedPost && (
                     <div className="prose-styles relative">
